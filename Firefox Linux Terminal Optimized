@@ -1,0 +1,9 @@
+# Set the nice priority for Firefox
+nice -n -10 firefox
+
+# Set CPU affinity for Firefox (assign to all available cores)
+taskset -c 0-$(nproc) nice -n -10 firefox
+
+# Adjust swappiness
+echo "vm.swappiness=10" | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p
